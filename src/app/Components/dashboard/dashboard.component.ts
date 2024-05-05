@@ -18,7 +18,7 @@ import {TokenService} from "../../Services/token.service";
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  LogoImgPath = '../../../assets/Logo.png';
+  LogoImgPath = '../../../assets/log.png';
   isLoggedIn:boolean = false;
 
   // Dark Mode or Light Mode
@@ -32,6 +32,7 @@ export class DashboardComponent {
 
   // Status variable
   status = false;
+
 
   // Image profile variable
   imageProfile!: SafeUrl;

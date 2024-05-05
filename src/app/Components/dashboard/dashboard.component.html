@@ -1,6 +1,6 @@
 <body [class]="darkMode ? 'dark' : ''">
 <!-- SIDEBAR -->
-<section id="sidebar" [ngClass]="status ? 'hideSide' : ''">
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
   <a class="brand" routerLink="/Dashboard/Profile">
     <img
       [src]="LogoImgPath"
@@ -20,7 +20,7 @@
     </li>
     <li
 
-      routerLink="/Dashboard/FeedBack"
+      routerLink="/Dashboard/feedBack"
       routerLinkActive="active"
     >
       <a>
@@ -63,7 +63,7 @@
     >
       <a>
           <span class="text item-list-dash"
-          ><mat-icon>key</mat-icon
+          ><mat-icon>people</mat-icon
           ><span class="item-list-dash">Users</span></span
           >
       </a>
