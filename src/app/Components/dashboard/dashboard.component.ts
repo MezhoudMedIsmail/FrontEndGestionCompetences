@@ -36,14 +36,16 @@ export class DashboardComponent {
 
   // Image profile variable
   imageProfile!: SafeUrl;
-
+  role : string ="";
   constructor(
     private tokenStorageService: TokenService,
     private EService: EntryService,
     private sanitizer: DomSanitizer,
     private MatSnackBar: MatSnackBar,
     private userService: UserService
-  ) {}
+  ) {
+    this.role = this.tokenStorageService.getRole() as string;
+  }
 
   ngOnInit(): void {
     this.isLoggedIn =!!this.tokenStorageService.getToken();

@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import {ApplicationConfig, importProvidersFrom} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -11,6 +11,10 @@ import {TokenService} from "./Services/token.service";
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {intAuthInterceptor} from "./Interceptor/int-auth.interceptor";
 import {DataService} from "./Services/data.service";
+import {JwtModule} from "@auth0/angular-jwt";
+export function tokenGetter() {
+  return localStorage.getItem("TOKEN_KEY");
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,5 +27,14 @@ export const appConfig: ApplicationConfig = {
     TokenService,
     provideHttpClient(withInterceptors([intAuthInterceptor])),
     DataService, provideAnimationsAsync(),
+    importProvidersFrom(
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: tokenGetter,
+          allowedDomains: ["http://localhost:8088/api/"],
+          //disallowedRoutes: ["http://example.com/examplebadroute/"],
+        },
+      }),
+    ),
   ]
 };

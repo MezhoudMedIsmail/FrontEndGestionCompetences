@@ -11,7 +11,7 @@ import {ThemeComponent} from "./Components/dashboard/theme/theme.component";
 import {UsersComponent} from "./Components/dashboard/users/users.component";
 
 export const routes: Routes = [
-  { path: "login", component: LoginComponent},
+  { path: "login", component: LoginComponent, canActivate: [SecureInnerPagesGuard]},
   {
     path: 'Dashboard',
     component: DashboardComponent,
@@ -20,7 +20,11 @@ export const routes: Routes = [
       { path: 'feedback', component: FeedbackComponent },
       { path: 'question', component: QuestionComponent },
       { path: 'theme', component: ThemeComponent },
-      { path: 'users', component: UsersComponent},
+      { path: 'users', component: UsersComponent,canActivate : [AuthGuard],
+        data:{
+          role: ['ADMIN']
+        }
+      },
       { path: '', redirectTo: 'theme', pathMatch: 'full' },
       {
         path : 'Profile' ,

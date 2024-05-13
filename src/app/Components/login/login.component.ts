@@ -76,7 +76,6 @@ export class LoginComponent {
         .subscribe({
           next: (data :any) =>{
             this.tokenStorage.saveToken(data.token);
-            console.log(data);
             this.router.navigate(['/Dashboard']);
           },
           error: (err : Error) => {

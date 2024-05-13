@@ -19,8 +19,7 @@
       </a>
     </li>
     <li
-
-      routerLink="/Dashboard/feedBack"
+      routerLink="/Dashboard/feedback"
       routerLinkActive="active"
     >
       <a>
@@ -57,7 +56,7 @@
     </li>
 
     <li
-
+      *ngIf="role === 'ADMIN'"
       routerLink="/Dashboard/users"
       routerLinkActive="active"
     >
@@ -65,19 +64,6 @@
           <span class="text item-list-dash"
           ><mat-icon>people</mat-icon
           ><span class="item-list-dash">Users</span></span
-          >
-      </a>
-    </li>
-
-    <li
-
-      routerLink="/Dashboard/statistics"
-      routerLinkActive="active"
-    >
-      <a>
-          <span class="text item-list-dash"
-          ><mat-icon>key</mat-icon
-          ><span class="item-list-dash">Statistics</span></span
           >
       </a>
     </li>
