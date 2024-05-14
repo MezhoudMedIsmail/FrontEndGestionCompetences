@@ -5,9 +5,10 @@ export class Theme {
   id!: number;
   title!: string;
   questions: Question[]=[];
-  user:User[]=[];
+  departement !: string;
 
   constructor() {
     this.title = "";
+    this.departement ="";
   }
 }

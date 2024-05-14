@@ -78,7 +78,7 @@
                 <h6 class="mb-0">Département</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                {{ user.department }}
+                {{ user.departement }}
               </div>
             </div>
             <hr />
@@ -108,14 +108,14 @@
                 <button
                   class="btn btn-success"
                   disabled
-                  *ngIf="user.status == true"
+                  *ngIf="user.status"
                 >
                   Actif
                 </button>
                 <button
                   class="btn bn-danger"
                   disabled
-                  *ngIf="user.status == false"
+                  *ngIf="!user.status"
                 >
                   Suspended
                 </button>
@@ -227,19 +227,19 @@
           </mat-form-field>
           <!-- Department input -->
           <mat-form-field class="form-group mb-3">
-            <mat-label class="form-label" for="department">
+            <mat-label class="form-label" for="departement">
               <i class="me-3"> <mat-icon> business</mat-icon></i> Departement
             </mat-label>
             <input
               matInput
               type="text"
-              id="department"
-              formControlName="department"
+              id="departement"
+              formControlName="departement"
               [errorStateMatcher]="matcher"
               name="department"
               required
             />
-            <mat-error *ngIf="department?.hasError('required')">
+            <mat-error *ngIf="departement?.hasError('required')">
               Department is <strong>required</strong>
             </mat-error>
           </mat-form-field>

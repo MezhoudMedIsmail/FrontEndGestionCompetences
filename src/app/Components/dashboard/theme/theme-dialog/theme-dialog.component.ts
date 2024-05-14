@@ -13,8 +13,9 @@ import {Theme} from "../../../../Models/theme";
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {ThemeService} from "../../../../Services/theme.service";
+import {MatOption, MatSelect} from "@angular/material/select";
 
 @Component({
   selector: 'app-theme-dialog',
@@ -29,13 +30,17 @@ import {ThemeService} from "../../../../Services/theme.service";
     MatInput,
     MatLabel,
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelect,
+    MatOption,
+    NgForOf
   ],
   templateUrl: './theme-dialog.component.html',
   styleUrl: './theme-dialog.component.css'
 })
 export class ThemeDialogComponent {
   themeForm: FormGroup;
+  departments = ['IT', 'RH', 'SEC'];  // This array can be fetched from the server if needed
 
   constructor(
     private themeService: ThemeService,
@@ -46,7 +51,7 @@ export class ThemeDialogComponent {
       id: new FormControl(data.theme.id),
       title: new FormControl(data.theme.title),
       questions: new FormControl(data.theme.questions),
-      user: new FormControl(data.theme.user),
+      departement: new FormControl(data.theme.departement),
       // Include other fields as necessary
     });
   }

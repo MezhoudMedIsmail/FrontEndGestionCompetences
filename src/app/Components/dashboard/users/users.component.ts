@@ -27,7 +27,7 @@ import {UserService} from "../../../Services/user.service";
   styleUrl: './users.component.css'
 })
 export class UsersComponent {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email','matricule','region','phone','department', 'edit','delete'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email','matricule','region','phone','departement', 'edit','delete'];
   dataSource: User[] = []; // This should be your actual data source, possibly fetched from a service
 
   constructor(public dialog: MatDialog, private userService : UserService) {

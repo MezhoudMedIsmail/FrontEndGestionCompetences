@@ -34,7 +34,7 @@ import {ThemeDialogComponent} from "./theme-dialog/theme-dialog.component";
   styleUrl: './theme.component.css'
 })
 export class ThemeComponent {
-  displayedColumns: string[] = ['id','title', 'edit', 'delete'];
+  displayedColumns: string[] = ['id','title','department', 'edit', 'delete'];
   dataSource: Theme[] = [];
 
   constructor(public dialog: MatDialog, private themeService: ThemeService) {
@@ -45,6 +45,7 @@ export class ThemeComponent {
     this.themeService.getAll().subscribe(
       (data: Theme[]) => {
         this.dataSource = data;
+        console.log(data)
       }
     );
   }

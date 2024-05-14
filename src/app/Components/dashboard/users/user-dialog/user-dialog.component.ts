@@ -7,23 +7,28 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {User} from "../../../../Models/users";
 import {MatButton} from "@angular/material/button";
 import {UserService} from "../../../../Services/user.service";
+import {MatOption} from "@angular/material/autocomplete";
+import {MatSelect} from "@angular/material/select";
 
 @Component({
   selector: 'app-user-dialog',
   templateUrl: './user-dialog.component.html',
   styleUrls: ['./user-dialog.component.css'],
   standalone: true,
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    MatInputModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatButton
-  ]
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatButton,
+        MatOption,
+        MatSelect
+    ]
 })
 export class UserDialogComponent {
   userForm: FormGroup;
+  departments = ['IT', 'RH', 'SEC'];  // This array can be fetched from the server if needed
 
   constructor(
     private userService : UserService,
@@ -39,7 +44,7 @@ export class UserDialogComponent {
       password: new FormControl(data.user.password),
       matricule: new FormControl(data.user.matricule),
       region : new FormControl(data.user.region),
-      department : new FormControl(data.user.department),
+      departement : new FormControl(data.user.departement),
       phone : new FormControl(data.user.phone),
       // Include other fields as necessary
     });

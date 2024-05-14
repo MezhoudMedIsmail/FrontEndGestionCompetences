@@ -31,7 +31,7 @@ const LogoImgPath =
 })
 export class ProfileComponent {
   user: User = {
-    email: "", firstName: "", id: 0, lastName: "", password: "", role: "", status: true, region:"", phone:"", department:"",matricule:0,
+    email: "", firstName: "", id: 0, lastName: "", password: "", role: "", status: true, region:"", phone:"", departement:"",matricule:0,
   };
 
 
@@ -55,10 +55,10 @@ export class ProfileComponent {
         this.user.email = res.email;
         this.user.region = res.region;
         this.user.phone = res.phone;
-        this.user.department = res.department;
+        this.user.departement = res.departement;
         this.user.matricule = res.matricule;
         this.user.password = res.password;
-
+        console.log(this.user)
         // Initialize form controls with user data
         this.form.patchValue({
           email: this.user.email,
@@ -66,7 +66,7 @@ export class ProfileComponent {
           lastName: this.user.lastName,
           region: this.user.region,
           phone: this.user.phone,
-          department: this.user.department,
+          department: this.user.departement,
           matricule: this.user.matricule,
           password: this.user.password
         });
@@ -92,7 +92,7 @@ export class ProfileComponent {
     firstName: new FormControl(this.user.firstName, [Validators.required]),
     region: new FormControl(this.user.region, [Validators.required]),
     phone: new FormControl(this.user.phone, [Validators.required]),
-    department: new FormControl(this.user.department, [Validators.required]),
+    departement: new FormControl(this.user.departement, [Validators.required]),
     matricule: new FormControl(this.user.matricule, [Validators.required]),
     password: new FormControl(this.user.password, [Validators.required])
   });
@@ -114,8 +114,8 @@ export class ProfileComponent {
   get phone() {
     return this.form.get('phone');
   }
-  get department() {
-    return this.form.get('department');
+  get departement() {
+    return this.form.get('departement');
   }
   get matricule() {
     return this.form.get('matricule');
@@ -131,7 +131,7 @@ export class ProfileComponent {
     this.user.lastName = this.lastName?.value;
     this.user.region = this.region?.value;
     this.user.phone = this.phone?.value;
-    this.user.department = this.department?.value;
+    this.user.departement = this.departement?.value;
     this.user.matricule = this.matricule?.value;
     this.user.password = this.password?.value;
 

@@ -4,7 +4,7 @@ export class User {
   lastName: string;
   email: string;
   region: string;
-  department: string;
+  departement: string;
   phone: string;
   matricule :number ;
   password !: string;
@@ -16,7 +16,7 @@ export class User {
     this.lastName = "";
     this.email = "";
     this.region = "";
-    this.department = "";
+    this.departement = "";
     this.phone = "";
     this.matricule = 0;
   }

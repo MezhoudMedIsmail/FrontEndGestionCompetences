@@ -1,1 +1,15 @@
-<p>evaluation works!</p>
+<form [formGroup]="evaluationForm" (ngSubmit)="submitEvaluation()">
+  <div *ngFor="let q of questions; let i = index" class="form-control">
+    <h3>{{ q.name }}</h3>
+    <label id="label-{{ q.id }}">{{ q.text }}</label>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Note</mat-label>
+      <mat-select [formControlName]="'note' + q.id" (selectionChange)="setResponse(q.id, $event.value)">
+        <mat-option *ngFor="let note of ['EXCELLENT', 'GOOD', 'OKAY', 'NOT_ENOUGH', 'NO']" [value]="note">
+          {{ note }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button type="submit">Submit</button>
+</form>

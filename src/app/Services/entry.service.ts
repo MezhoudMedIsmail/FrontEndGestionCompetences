@@ -21,6 +21,5 @@ export class EntryService {
 
   signOut(): void {
     window.sessionStorage.clear();
-    window.location.reload();
   }
 }

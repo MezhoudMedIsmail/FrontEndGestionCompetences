@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  justify-content: center;  /* Horizontal centering */
+  align-items: center;      /* Vertical centering */
+  height: 70vh;            /* Full viewport height */
+}
+.centered-div {
+  width: 50%;               /* Example width */
+}

@@ -1,1 +1,33 @@
-<p>feedback works!</p>
+<div class="container">
+  <div class="centered-div">
+    <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+      <mat-form-field appearance="fill">
+        <mat-label>Comment</mat-label>
+        <input matInput formControlName="comment">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Note</mat-label>
+        <mat-select formControlName="note">
+          <mat-option *ngFor="let note of ['EXCELLENT', 'GOOD', 'OKAY', 'NOT_ENOUGH','NO']" [value]="note">
+            {{ note }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Title of Formation</mat-label>
+        <input matInput formControlName="title_formation">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!feedbackForm.valid">Submit Feedback</button>
+    </form>
+  </div>
+</div>

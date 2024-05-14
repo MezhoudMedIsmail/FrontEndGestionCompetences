@@ -26,8 +26,17 @@ export class DashboardComponent {
 
   // User data object
   userData: User = {
-    email: "", firstName: "", id: 0, lastName: "", password: "", role: "", status: true , matricule: 0 , phone: "", region: "", department: ""
-
+    departement: "",
+    email: "",
+    firstName: "",
+    id: 0,
+    lastName: "",
+    matricule: 0,
+    password: "",
+    phone: "",
+    region: "",
+    role: "",
+    status: false
   };
 
   // Status variable

@@ -7,8 +7,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {TokenService} from '../Services/token.service';
-import {EntryService} from "../Services/entry.service";
+import { TokenService } from '../Services/token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +16,7 @@ export class SecureInnerPagesGuard implements CanActivate {
   constructor(
     public tokenStorageService: TokenService,
     public router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   canActivate(
@@ -24,7 +24,8 @@ export class SecureInnerPagesGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (this.tokenStorageService.getToken()) {
-      this.router.navigate(['/Dashboard'], {
+      this._snackBar.open('Access Denied, You are already LoggedIn !!!', '❌');
+      this.router.navigate(['/Dashboard/Statistics'], {
         queryParams: { returnUrl: state.url },
       });
       return false;

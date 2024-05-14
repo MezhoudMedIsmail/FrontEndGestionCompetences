@@ -32,7 +32,6 @@ export const appConfig: ApplicationConfig = {
         config: {
           tokenGetter: tokenGetter,
           allowedDomains: ["http://localhost:8088/api/"],
-          //disallowedRoutes: ["http://example.com/examplebadroute/"],
         },
       }),
     ),
