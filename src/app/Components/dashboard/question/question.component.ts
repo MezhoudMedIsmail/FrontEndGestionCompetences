@@ -20,6 +20,7 @@ import {ThemeService} from "../../../Services/theme.service";
 import {QuestionDialogComponent} from "./question-dialog/question-dialog.component";
 import {QuestionService} from "../../../Services/question.service";
 import {Theme} from "../../../Models/theme";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-question',
@@ -40,7 +41,8 @@ import {Theme} from "../../../Models/theme";
     MatCell,
     MatCellDef,
     MatRowDef,
-    MatLabel
+    MatLabel,
+    MatIcon
   ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.css'

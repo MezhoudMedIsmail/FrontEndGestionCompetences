@@ -9,6 +9,7 @@ import {MatTableModule} from "@angular/material/table";
 import {UserDialogComponent} from "./user-dialog/user-dialog.component";
 import {User} from "../../../Models/users";
 import {UserService} from "../../../Services/user.service";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-users',
@@ -20,8 +21,10 @@ import {UserService} from "../../../Services/user.service";
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    MatIcon,
     ReactiveFormsModule,
-    UserDialogComponent // Ensure this component is also stand-alone
+    UserDialogComponent // Ensure this component is also stand-alonem
+
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'

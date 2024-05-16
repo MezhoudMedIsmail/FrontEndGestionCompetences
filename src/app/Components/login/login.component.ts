@@ -11,6 +11,7 @@ import {CommonModule} from "@angular/common";
 import {User} from "../../Models/users";
 import {ErrorsStateMatcher} from "../../Models/ErrorStateMatcher";
 import {HttpClientModule} from "@angular/common/http";
+import {MatButton, MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatFormField,
     MatLabel,
     HttpClientModule,
+    MatIconButton,
+    MatButton,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -43,7 +46,7 @@ export class LoginComponent {
   matcher = new ErrorsStateMatcher();
 
   // Variable for tracking active form and hide/show password
-  active: string = '';
+
   hide: boolean = true;
   errorMessage: string = '';
 

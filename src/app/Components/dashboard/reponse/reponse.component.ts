@@ -4,23 +4,25 @@ import {Question} from "../../../Models/question";
 import {MatDialog} from "@angular/material/dialog";
 import {ThemeService} from "../../../Services/theme.service";
 import {QuestionService} from "../../../Services/question.service";
-import {QuestionDialogComponent} from "../question/question-dialog/question-dialog.component";
-import {MatButton} from "@angular/material/button";
-import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow,
-  MatHeaderRowDef,
-  MatRow, MatRowDef, MatTable
-} from "@angular/material/table";
-import {MatFormField, MatLabel} from "@angular/material/form-field";
-import {MatOption} from "@angular/material/autocomplete";
-import {MatSelect} from "@angular/material/select";
-import {NgForOf} from "@angular/common";
 import {ReponseDialogComponent} from "./reponse-dialog/reponse-dialog.component";
 import {User} from "../../../Models/users";
+import {EChartsOption} from 'echarts';
+import {NgxEchartsDirective, provideEcharts} from "ngx-echarts";
+import {
+  MatCell, MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow, MatRowDef,
+  MatTable
+} from "@angular/material/table";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {NgForOf} from "@angular/common";
+import {MatButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-reponse',
@@ -41,17 +43,57 @@ import {User} from "../../../Models/users";
     MatCell,
     MatCellDef,
     MatRowDef,
-    MatLabel
+    MatLabel,
+    MatIcon,
+    NgxEchartsDirective
   ],
+  providers: [provideEcharts()],
   templateUrl: './reponse.component.html',
-  styleUrl: './reponse.component.css'
+  styleUrls: ['./reponse.component.css']
 })
-export class ReponseComponent implements OnInit{
+export class ReponseComponent implements OnInit {
   themes: Theme[] = [];
   dataSource: Question[] = [];
   selectedThemeId: number | undefined;
   displayedColumns: string[] = ['id', 'name', 'lastname', 'response'];
-  userList : User[]=[];
+  userList: User[] = [];
+
+  responseCounts: any = {
+    EXCELLENT: 0,
+    GOOD: 0,
+    OKAY: 0,
+    NOT_ENOUGH: 0,
+    NO: 0
+  };
+
+  option: EChartsOption = {
+    title: {
+      text: 'Statistique des reponses selon them ',
+      subtext: 'Theme : ' + this.themes.find(theme => theme.id === this.selectedThemeId)?.title ? this.themes.find(theme => theme.id === this.selectedThemeId)?.title : '',
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      orient: 'vertical',
+      left: 'left'
+    },
+    series: [
+      {
+        name: 'Access From',
+        type: 'pie',
+        radius: '50%',
+        data: [
+          { value: this.responseCounts.EXCELLENT, name: 'EXCELLENT' },
+          { value: this.responseCounts.GOOD, name: 'GOOD' },
+          { value: this.responseCounts.OKAY, name: 'OKAY' },
+          { value: this.responseCounts.NOT_ENOUGH, name: 'NOT_ENOUGH' },
+          { value: this.responseCounts.NO, name: 'NO' },
+        ],
+      },
+    ],
+  };
 
   constructor(
     public dialog: MatDialog,
@@ -78,16 +120,15 @@ export class ReponseComponent implements OnInit{
     this.questionService.getQuestionsByTheme(themeId).subscribe(data => {
       this.dataSource = data;
       this.extractUsers();
-      console.log(data)
+      this.calculateResponseCounts();
     });
   }
-  openResponsesDialog(userId : number): void {
-    // Filter the data to include only those questions where the user has responded
+
+  openResponsesDialog(userId: number): void {
     const filteredQuestions = this.dataSource.filter(question =>
       question.reponse.some((response) => response.user.id === userId)
     );
 
-    // Now, further filter the responses inside each question to include only those from the specific user
     const dataForDialog = filteredQuestions.map(question => ({
       ...question,
       reponse: question.reponse.filter(response => response.user.id === userId)
@@ -100,17 +141,81 @@ export class ReponseComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // Optional: Refresh or handle data after dialog closes
     });
   }
 
-
   extractUsers() {
-      this.questionService.getUsersByTheme(this.selectedThemeId as number).subscribe((data: User[]) => {
+    if (this.selectedThemeId) {
+      this.questionService.getUsersByTheme(this.selectedThemeId).subscribe((data: User[]) => {
         this.userList = data;
-        console.log(data)
       });
-
+    }
   }
 
+  calculateResponseCounts() {
+    this.responseCounts = {
+      EXCELLENT: 0,
+      GOOD: 0,
+      OKAY: 0,
+      NOT_ENOUGH: 0,
+      NO: 0
+    };
+
+    this.dataSource.forEach(question => {
+      question.reponse.forEach(response => {
+        if (this.responseCounts.hasOwnProperty(response.reponse)) {
+          this.responseCounts[response.reponse]++;
+        }
+      });
+    });
+
+    this.updateChart();
+  }
+
+  updateChart() {
+    const totalResponses = Object.values(this.responseCounts).reduce((acc : number, count :any) => acc + count, 0);
+
+    if (this.option && this.option.series) {
+      this.option= {
+        title: {
+          text: 'Statistique des reponses selon them ',
+          subtext: 'Theme : ' + this.themes.find(theme => theme.id === this.selectedThemeId)?.title,
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left'
+        },
+        series: [
+          {
+            name: 'Access From',
+            type: 'pie',
+            radius: '50%',
+            data:  [
+              { value: Number(((this.responseCounts.EXCELLENT / totalResponses) * 100).toFixed(2)), name: 'EXCELLENT' },
+              { value: Number(((this.responseCounts.GOOD / totalResponses) * 100).toFixed(2)), name: 'GOOD' },
+              { value: Number(((this.responseCounts.OKAY / totalResponses) * 100).toFixed(2)), name: 'OKAY' },
+              { value: Number(((this.responseCounts.NOT_ENOUGH / totalResponses) * 100).toFixed(2)), name: 'NOT_ENOUGH' },
+              { value: Number(((this.responseCounts.NO / totalResponses) * 100).toFixed(2)), name: 'NO' },
+            ],
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: 'bold'
+              },
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+    }
+  }
 }

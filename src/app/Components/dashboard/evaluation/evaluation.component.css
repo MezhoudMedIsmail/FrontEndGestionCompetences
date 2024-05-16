@@ -1,62 +1,88 @@
-/* Styling the Body element
-        i.e. Color, Font, Alignment */
-body {
-  background-color: #05c46b;
-  font-family: Verdana;
+.form-box {
+  width: 100%;
+  background: #f1f7fe;
+  overflow: hidden;
+  border-radius: 16px;
+  color: #010101;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px 24px;
+  gap: 16px;
   text-align: center;
 }
 
-/* Styling the Form (Color, Padding, Shadow) */
-form {
+/*Form text*/
+.title {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+/*Inputs box*/
+.form-container {
+  overflow: hidden;
+  border-radius: 8px;
   background-color: #fff;
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 30px 20px;
-  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Styling form-control Class */
-.form-control {
-  text-align: left;
-  margin-bottom: 25px;
-}
-
-/* Styling form-control Label */
-.form-control label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-/* Styling form-control input,
-select, textarea */
-.form-control input,
-.form-control select,
-.form-control textarea {
-  border: 1px solid #777;
-  border-radius: 2px;
-  font-family: inherit;
-  padding: 10px;
-  display: block;
-  width: 95%;
-}
-
-/* Styling form-control Radio
-button and Checkbox */
-.form-control input[type="radio"],
-.form-control input[type="checkbox"] {
-  display: inline-block;
-  width: auto;
-}
-
-/* Styling Button */
-button {
-  background-color: #05c46b;
-  border: 1px solid #777;
-  border-radius: 2px;
-  font-family: inherit;
-  font-size: 21px;
-  display: block;
+  margin: 1rem 0 .5rem;
   width: 100%;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  text-align: left;
+}
+
+.description{
+  margin: 10px;
+  width: 50%;
+}
+
+.input {
+  background: none;
+  border: 0;
+  outline: 0;
+  height: 40px;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  font-size: .9rem;
+  padding: 8px 15px;
+}
+
+.form-section {
+  padding: 16px;
+  font-size: .85rem;
+  background-color: #e0ecfb;
+  box-shadow: rgb(0 0 0 / 8%) 0 -1px;
+}
+
+.form-section a {
+  font-weight: bold;
+  color: #0066ff;
+  transition: color .3s ease;
+}
+
+.form-section a:hover {
+  color: #005ce6;
+  text-decoration: underline;
+}
+
+/*Button*/
+.form button {
+  background-color: #0066ff;
+  color: #fff;
+  border: 0;
+  border-radius: 24px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+
+.form button:hover {
+  background-color: #005ce6;
 }

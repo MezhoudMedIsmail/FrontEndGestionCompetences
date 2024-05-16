@@ -13,6 +13,7 @@ import {Theme} from "../../../Models/theme";
 import {MatDialog} from "@angular/material/dialog";
 import {ThemeService} from "../../../Services/theme.service";
 import {ThemeDialogComponent} from "./theme-dialog/theme-dialog.component";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-theme',
@@ -28,7 +29,8 @@ import {ThemeDialogComponent} from "./theme-dialog/theme-dialog.component";
     MatHeaderRowDef,
     MatColumnDef,
     MatHeaderCellDef,
-    MatTable
+    MatTable,
+    MatIcon
   ],
   templateUrl: './theme.component.html',
   styleUrl: './theme.component.css'

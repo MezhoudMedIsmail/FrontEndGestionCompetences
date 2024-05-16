@@ -1,6 +1,8 @@
-<div class="container">
-  <div class="centered-div">
-    <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+<div class="centered-div">
+  <div>
+    <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()" class="form">
+      <p class="title">Feed Back Formation</p>
+      <p class="message">Aprés avoir terminer la formation veuillez-vous remplissez cette formulaire</p>
       <mat-form-field appearance="fill">
         <mat-label>Comment</mat-label>
         <input matInput formControlName="comment">
@@ -27,7 +29,7 @@
         <input matInput formControlName="title_formation">
       </mat-form-field>
       <br>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!feedbackForm.valid">Submit Feedback</button>
+      <button class="submit" type="submit">Submit Feedback</button>
     </form>
   </div>
 </div>

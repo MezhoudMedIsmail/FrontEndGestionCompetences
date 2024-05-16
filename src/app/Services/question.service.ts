@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {DataService} from "./data.service";
 import {HttpClient} from "@angular/common/http";
 import {Question} from "../Models/question";
+import {Reponse} from "../Models/Reponse";
+import {TokenService} from "./token.service";
 const  APIUrl ="http://localhost:8088/api/question";
 
 @Injectable({
@@ -9,7 +11,7 @@ const  APIUrl ="http://localhost:8088/api/question";
 })
 export class QuestionService extends DataService{
 
-  constructor(http : HttpClient,private httpPrivate : HttpClient) {
+  constructor(http : HttpClient,private httpPrivate : HttpClient,private tokenService : TokenService) {
     super(APIUrl,http);
   }
 
@@ -24,6 +26,10 @@ export class QuestionService extends DataService{
   }
   getThemeByDepartment(department : string){
     //query param
-    return this.httpPrivate.get<any>(`http://localhost:8088/api/theme`,{params : {department}});
+    return this.httpPrivate.get<any>(`http://localhost:8088/api/theme/details`,{params : {departement :department}});
+  }
+  saveReponses(reponses :any){
+    const userId = this.tokenService.getUser() as number;
+    return this.httpPrivate.post(`${APIUrl}/reponse/${userId}`, reponses)
   }
 }

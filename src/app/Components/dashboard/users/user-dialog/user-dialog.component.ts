@@ -46,7 +46,6 @@ export class UserDialogComponent {
       region : new FormControl(data.user.region),
       departement : new FormControl(data.user.departement),
       phone : new FormControl(data.user.phone),
-      // Include other fields as necessary
     });
   }
 
