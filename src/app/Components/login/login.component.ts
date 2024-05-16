@@ -95,6 +95,7 @@ export class LoginComponent {
   formSubs: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
+    department : new FormControl('',[Validators.required]),
     emailSubs: new FormControl('', [Validators.required, Validators.email]),
     passwordSubs: new FormControl('', [
       Validators.required,
@@ -108,6 +109,9 @@ export class LoginComponent {
   }
   get lastName() {
     return this.formSubs.get('lastName');
+  }
+  get department(){
+    return this.formSubs.get('department');
   }
   get emailSubs() {
     return this.formSubs.get('emailSubs');
@@ -125,6 +129,7 @@ export class LoginComponent {
     this.SubsInfo.firstName = this.firstName?.value;
     this.SubsInfo.lastName = this.lastName?.value;
     this.SubsInfo.email = this.emailSubs?.value;
+    this.SubsInfo.departement = this.department?.value;
     this.SubsInfo.password = this.passwordSubs?.value;
     console.log(this.formSubs);
     if (this.formSubs.valid) {
@@ -136,7 +141,7 @@ export class LoginComponent {
           },
           error: (err: Error) => {
             this.errorMessage = err.message;
-            this._snackBar.open( this.errorMessage, '❌');
+            this._snackBar.open( "L'email deja existe", '❌');
           }
         });
 

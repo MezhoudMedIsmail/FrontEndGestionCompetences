@@ -41,6 +41,25 @@
       >
     </mat-form-field>
 
+    <!-- Department input -->
+    <mat-form-field class="form-group">
+      <mat-label class="form-label" for="department">
+        <i class="me-3"><mat-icon>profile</mat-icon></i> department
+      </mat-label>
+      <input
+        matInput
+        type="text"
+        id="department"
+        formControlName="department"
+        [errorStateMatcher]="matcher"
+        name="department"
+        required
+      />
+      <mat-error *ngIf="department?.hasError('required')"
+      >department is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+
     <!-- Email input -->
     <mat-form-field class="form-group">
       <mat-label class="form-label" for="EmailSubs">
