@@ -10,6 +10,7 @@ import {QuestionComponent} from "./Components/dashboard/question/question.compon
 import {ThemeComponent} from "./Components/dashboard/theme/theme.component";
 import {UsersComponent} from "./Components/dashboard/users/users.component";
 import {ReponseComponent} from "./Components/dashboard/reponse/reponse.component";
+import {ViewFeedbackComponent} from "./Components/dashboard/feedback/view-feedback/view-feedback.component";
 
 export const routes: Routes = [
   { path: "login", component: LoginComponent, canActivate: [SecureInnerPagesGuard]},
@@ -19,6 +20,7 @@ export const routes: Routes = [
     children: [
       { path: 'evaluation', component: EvaluationComponent ,canActivate : [AuthGuard]},
       { path: 'feedback', component: FeedbackComponent ,canActivate : [AuthGuard]},
+      { path: 'feedbacks', component: ViewFeedbackComponent ,canActivate : [AuthGuard]},
       { path: 'question', component: QuestionComponent ,canActivate : [AuthGuard]},
       { path: 'theme', component: ThemeComponent ,canActivate : [AuthGuard]},
       { path: 'users', component: UsersComponent,canActivate : [AuthGuard],

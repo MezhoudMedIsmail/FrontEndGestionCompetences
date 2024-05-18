@@ -136,7 +136,6 @@ export class ProfileComponent {
     this.user.password = this.password?.value;
 
     console.log(this.user);
-    if (this.form.valid) {
       this.userService.Update(this.user.id,this.user).subscribe(
         (res: any) => {
           this._snackBar.open('Change Success', '✅');
@@ -149,9 +148,6 @@ export class ProfileComponent {
           this._snackBar.open('Server Error :' +error.message, '❌');
         }
       );
-    } else {
-      this._snackBar.open('Enter valid information !!!', '❌');
-    }
   }
 
   // Method to handle image upload

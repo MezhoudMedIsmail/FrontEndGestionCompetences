@@ -2,7 +2,7 @@ import { Component, NgModule, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {User} from "../../../../Models/users";
 import {MatButton} from "@angular/material/button";
@@ -23,7 +23,8 @@ import {MatSelect} from "@angular/material/select";
         ReactiveFormsModule,
         MatButton,
         MatOption,
-        MatSelect
+        MatSelect,
+        MatLabel
     ]
 })
 export class UserDialogComponent {

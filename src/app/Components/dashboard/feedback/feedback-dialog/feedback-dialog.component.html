@@ -1,0 +1,27 @@
+<div mat-dialog-content style="padding: 20px">
+  <h1 mat-dialog-title>{{ data.feedback ? 'Edit Feedback' : 'Add Feedback' }}</h1>
+  <form [formGroup]="feedbackForm">
+    <mat-form-field appearance="fill">
+      <mat-label>title formation</mat-label>
+      <input matInput formControlName="title_formation">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Comment Text</mat-label>
+      <textarea matInput formControlName="comment"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Note</mat-label>
+      <mat-select formControlName="note">
+        <mat-option *ngFor="let note of ['ONE', 'TWO', 'THREE', 'FOUR','FIVE']" [value]="note">
+          {{ note }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button color="primary" (click)="onSave()">Save</button>
+  </div>
+</div>
+
