@@ -34,11 +34,11 @@ export class AuthGuard implements CanActivate {
     if (!jwtToken || this.jwtHelper.isTokenExpired(jwtToken)) {
       // check Wither the real problem is the expiration of the
       if(this.jwtHelper.isTokenExpired(this.authService.getToken())){
-        this._snackBar.open("Your session is Expired please try to loggIn again", '❌');
+        //this._snackBar.open("Your session is Expired please try to loggIn again", '❌');
         this.entryService.signOut();
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       }else{
-        this._snackBar.open("Access Denied !!!", '❌');
+        //this._snackBar.open("Access Denied !!!", '❌');
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       }
     }else{
