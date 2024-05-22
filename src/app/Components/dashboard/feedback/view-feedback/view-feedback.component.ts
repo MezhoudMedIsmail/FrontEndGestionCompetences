@@ -62,7 +62,7 @@ import {MatNativeDateModule} from "@angular/material/core";
   styleUrl: './view-feedback.component.css'
 })
 export class ViewFeedbackComponent {
-  displayedColumns: string[] = ['id',"titre",'note','date','comment', 'edit', 'delete'];
+  displayedColumns: string[] = ['id',"titre",'note','date','comment', 'delete'];
   dataSource: Feedback[] = [];
 
   constructor(public dialog: MatDialog, private feedbackService: FeedBackService) {

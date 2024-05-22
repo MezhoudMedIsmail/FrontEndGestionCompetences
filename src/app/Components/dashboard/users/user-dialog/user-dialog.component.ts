@@ -29,7 +29,7 @@ import {MatSelect} from "@angular/material/select";
 })
 export class UserDialogComponent {
   userForm: FormGroup;
-  departments = ['IT', 'RH', 'SEC'];  // This array can be fetched from the server if needed
+  departments = ['IT', 'RH', 'FIN','EP','CCS','COR'];  // This array can be fetched from the server if needed
 
   constructor(
     private userService : UserService,
