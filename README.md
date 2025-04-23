@@ -1,27 +1,90 @@
-# AmineFront
+🌟 FrontEndGestionCompetences
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
+A modern Angular-based frontend application for managing talent acquisition and competency evaluation within La Poste Tunisienne. This system is part of a broader solution that digitizes and streamlines the evaluation, feedback, and profile tracking processes in the organization.
 
-## Development server
+🎯 Project Purpose
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This frontend interfaces with a backend REST API to provide a complete talent management solution for HR departments. It includes dashboards, role-based access, evaluation modules, and user feedback handling.
 
-## Code scaffolding
+🧰 Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular
+- TypeScript
+- RxJS
+- Angular Router
+- HTTP Interceptors
+- SCSS / HTML5
+- JWT Authentication (via Guard + Interceptor)
 
-## Build
+🗂️ Folder Structure
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+src/app/
+├── Components/          # Main dashboard and feature modules
+│   └── dashboard/
+│       ├── evaluation/
+│       ├── feedback/
+│       ├── profile/
+│       ├── question/
+│       ├── reponse/
+│       ├── theme/
+│       └── users/
+├── Guard/               # Route protection (auth guard)
+├── Interceptor/         # JWT interceptor for requests
+├── Models/              # TypeScript interfaces and models
+├── Services/            # HTTP services for API integration
+├── app.component.ts     # Root component
+├── app.routes.ts        # Routing configuration
+└── app.config.ts        # App-level settings
+```
 
-## Running unit tests
+🚀 How to Run Locally
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository
 
-## Running end-to-end tests
+```bash
+git clone https://github.com/MezhoudMedIsmail/FrontEndGestionCompetences.git
+cd FrontEndGestionCompetences
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Install dependencies
 
-## Further help
+```bash
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. Run the development server
+
+```bash
+ng serve
+```
+
+4. Open your browser at `http://localhost:4200`
+
+---
+
+🔐 Authentication
+
+This frontend uses JWT authentication with route protection (`AuthGuard`) and auto-token inclusion in API requests via an HTTP interceptor.
+
+💡 Key Features
+
+- ✅ Secure login and token-based authentication
+- 📊 Dashboard for HR evaluations and user tracking
+- 📂 Modular component structure
+- 🧩 Reusable services and interface models
+- 🌐 Connects to a Spring Boot backend for data operations
+
+📦 Future Improvements
+
+- Add internationalization (i18n)
+- Improve UI responsiveness for mobile
+- Integrate charts for evaluation analytics
+
+🤝 Contributing
+
+Pull requests are welcome! For major updates, please open an issue first to discuss potential changes.
+
+---
+
+Built with ❤️ for La Poste Tunisienne by [MezhoudMedIsmail](https://github.com/MezhoudMedIsmail)
